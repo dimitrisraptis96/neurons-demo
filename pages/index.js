@@ -14,7 +14,7 @@ export default function Bloomberg({}) {
         sx={{ aspectRatio: 970 / 250 + "" }}
         bg="red.500"
       >
-        <TopBannerTag />
+        <TeadsAdRenderer uid="outstream_1" />
       </Box>
 
       <Box w="100%" position="relative">
@@ -29,47 +29,24 @@ export default function Bloomberg({}) {
           bg="blue.500"
           zIndex={99}
         >
-          <InPageBannerTag />
+          <TeadsAdRenderer uid="outstream_2" />
         </Box>
       </Box>
     </VStack>
   );
 }
 
-function TopBannerTag() {
+function TeadsAdRenderer({ uid }) {
   return (
     <>
-      <Script id="in-page-setup">
-        {`e9 = new Object(); e9.size="970x250";`}
-      </Script>
-
-      <Script
-        id="top-banner-tag"
-        strategy="afterInteractive"
-        src="https://tags.expo9.exponential.com/tags/study/Neurons_970/tags.js"
-        onLoad={(e) => {
-          console.log("afterInteractive 970x250 onLoad()", e);
-        }}
-      ></Script>
-    </>
-  );
-}
-
-function InPageBannerTag() {
-  return (
-    <>
-      <Script id="in-page-setup">
-        {`e9 = new Object(); e9.size = "300x600";`}
-      </Script>
-
-      <Script
-        id="in-page-tag"
-        strategy="afterInteractive"
-        src="https://tags.expo9.exponential.com/tags/study/Neurons_HPA/tags.js"
-        onLoad={(e) => {
-          console.log("afterInteractive 300x600 onLoad()", e);
-        }}
-      ></Script>
+      <Box id={uid} w="100%" h="100%">
+        <Script
+          type="text/javascript"
+          class="teads"
+          async="true"
+          src="https://a.teads.tv/page/186485/tag"
+        />
+      </Box>
     </>
   );
 }
